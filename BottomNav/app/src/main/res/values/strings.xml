@@ -2,6 +2,8 @@
 
     <string name="app_name">Bottom Nav</string>
 
+    <string name="toolbar_title">Bottom Nav</string>
+
     <!-- Menu Items -->
     <string name="menu_item_songs">Songs</string>
     <string name="menu_item_movies">Movies</string>
