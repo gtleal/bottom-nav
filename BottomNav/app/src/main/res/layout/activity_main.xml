@@ -5,19 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways|snap"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <FrameLayout
-        android:id="@+id/container"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"/>
+        android:gravity="center"
+        android:text="Songs"
+        android:textSize="20sp"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -26,7 +20,7 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemTextColor="@color/item_text_color"
         app:menu="@menu/menu_bottom_navigation"/>
 
 </RelativeLayout>

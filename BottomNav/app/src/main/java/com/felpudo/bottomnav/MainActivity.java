@@ -1,37 +1,34 @@
 package com.felpudo.bottomnav;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        final Window window = getWindow();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.toolbar_title);
+        final TextView textView = (TextView)findViewById(R.id.textView);
 
-        setSupportActionBar(toolbar);
-
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-
-        final Fragment songsFragment  = new SongsFragment();
-        final Fragment moviesFragment = new MoviesFragment();
-        final Fragment booksFragment  = new BooksFragment();
-
-        fragmentManager.beginTransaction().replace(R.id.container, songsFragment).commit();
-
-        BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bottomNav);
+        final BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bottomNav);
 
         bottomNav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,26 +36,50 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                        FragmentTransaction fragmentTransaction;
-
                         switch (item.getItemId()) {
 
                             case R.id.action_songs:
 
-                                fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.container, songsFragment).commit();
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+                                }
+
+                                textView.setText(R.string.menu_item_songs);
+                                bottomNav.setItemBackgroundResource(R.color.colorPrimary);
                                 return true;
 
                             case R.id.action_movies:
 
-                                fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.container, moviesFragment).commit();
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                                }
+
+                                textView.setText(R.string.menu_item_movies);
+                                bottomNav.setItemBackgroundResource(R.color.red);
                                 return true;
 
                             case R.id.action_books:
 
-                                fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.container, booksFragment).commit();
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.teal));
+                                }
+
+                                textView.setText(R.string.menu_item_books);
+                                bottomNav.setItemBackgroundResource(R.color.teal);
+                                return true;
+
+                            case R.id.action_history:
+
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.brown));
+                                }
+
+                                textView.setText(R.string.menu_item_history);
+                                bottomNav.setItemBackgroundResource(R.color.brown);
                                 return true;
 
                             default:

@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_movies"
         android:enabled="true"
-        android:icon="@drawable/ic_movie_creation_white_24dp"
+        android:icon="@drawable/ic_local_movie_white_24dp"
         android:title="@string/menu_item_movies"
         app:showAsAction="ifRoom"/>
     <item
@@ -18,5 +18,11 @@
         android:enabled="true"
         android:icon="@drawable/ic_book_white_24dp"
         android:title="@string/menu_item_books"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_history"
+        android:enabled="true"
+        android:icon="@drawable/ic_history_white_24dp"
+        android:title="@string/menu_item_history"
         app:showAsAction="ifRoom"/>
 </menu>
