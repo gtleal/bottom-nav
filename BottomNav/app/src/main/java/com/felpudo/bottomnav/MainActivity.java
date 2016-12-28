@@ -16,13 +16,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        final Window window = getWindow();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -36,49 +29,35 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                        // Do something according to the selected item
+
                         switch (item.getItemId()) {
 
                             case R.id.action_songs:
 
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
-                                }
-
                                 textView.setText(R.string.menu_item_songs);
+                                changeStatusBarColor(R.color.colorPrimary);
                                 bottomNav.setItemBackgroundResource(R.color.colorPrimary);
                                 return true;
 
                             case R.id.action_movies:
 
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
-                                }
-
                                 textView.setText(R.string.menu_item_movies);
+                                changeStatusBarColor(R.color.red);
                                 bottomNav.setItemBackgroundResource(R.color.red);
                                 return true;
 
                             case R.id.action_books:
 
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.teal));
-                                }
-
                                 textView.setText(R.string.menu_item_books);
+                                changeStatusBarColor(R.color.teal);
                                 bottomNav.setItemBackgroundResource(R.color.teal);
                                 return true;
 
                             case R.id.action_history:
 
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                                    window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.brown));
-                                }
-
                                 textView.setText(R.string.menu_item_history);
+                                changeStatusBarColor(R.color.brown);
                                 bottomNav.setItemBackgroundResource(R.color.brown);
                                 return true;
 
@@ -88,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void  changeStatusBarColor(int res) {
+
+        // Verify that the color of the status bar can be changed
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), res));
+        }
     }
 }
